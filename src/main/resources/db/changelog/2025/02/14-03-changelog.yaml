@@ -1,19 +1,18 @@
 databaseChangeLog:
   - changeSet:
-      id: 1738435971425-1
+      id: 1739524712826-1
       author: polle
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - createTable:
             columns:
               - column:
-                  autoIncrement: true
                   constraints:
                     nullable: false
                     primaryKey: true
                     primaryKeyName: pk_app_user
                   name: id
-                  type: BIGINT
+                  type: UUID
               - column:
                   name: email
                   type: VARCHAR(255)

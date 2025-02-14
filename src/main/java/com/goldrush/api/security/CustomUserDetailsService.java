@@ -1,6 +1,6 @@
 package com.goldrush.api.security;
 
-import com.goldrush.api.domain.User;
+import com.goldrush.api.model.User;
 import com.goldrush.api.repository.UserRepository;
 import java.util.Collections;
 import org.springframework.security.core.userdetails.UserDetails;

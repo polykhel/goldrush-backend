@@ -1,0 +1,105 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1739528993004-1
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: DATETIME
+              - column:
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+            tableName: app_user
+  - changeSet:
+      id: 1739528993004-2
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: created_at
+            tableName: app_user
+  - changeSet:
+      id: 1739528993004-5
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: DATETIME
+            tableName: country
+  - changeSet:
+      id: 1739528993004-6
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: DATETIME
+            tableName: inquiry
+  - changeSet:
+      id: 1739528993004-7
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: DATETIME
+            tableName: provider
+  - changeSet:
+      id: 1739528993004-8
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: DATETIME
+            tableName: provider_quotation
+  - changeSet:
+      id: 1739528993004-15
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: updated_at
+            tableName: app_user
+

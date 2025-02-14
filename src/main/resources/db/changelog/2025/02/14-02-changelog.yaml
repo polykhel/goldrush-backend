@@ -1,19 +1,18 @@
 databaseChangeLog:
   - changeSet:
-      id: 1738437315809-1
+      id: 1739524700381-1
       author: polle
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - createTable:
             columns:
               - column:
-                  autoIncrement: true
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_country
+                    primaryKeyName: pk_provider
                   name: id
-                  type: BIGINT
+                  type: UUID
               - column:
                   constraints:
                     nullable: false
@@ -25,19 +24,22 @@ databaseChangeLog:
                   name: updated_at
                   type: DATETIME
               - column:
-                  name: deleted_at
-                  type: DATETIME
-              - column:
                   name: created_by
                   type: VARCHAR(255)
               - column:
                   name: updated_by
                   type: VARCHAR(255)
               - column:
-                  name: code
-                  type: VARCHAR(255)
-              - column:
                   name: name
                   type: VARCHAR(255)
-            tableName: country
+              - column:
+                  name: logo
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: tracker_link
+                  type: VARCHAR(255)
+            tableName: provider
 

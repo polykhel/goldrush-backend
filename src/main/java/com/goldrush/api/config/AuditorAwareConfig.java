@@ -1,6 +1,6 @@
 package com.goldrush.api.config;
 
-import com.goldrush.api.domain.User;
+import com.goldrush.api.model.User;
 import com.goldrush.api.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

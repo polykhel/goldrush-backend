@@ -1,7 +1,8 @@
 package com.goldrush.api.security;
 
-import com.goldrush.api.domain.User;
+import com.goldrush.api.model.User;
 import com.goldrush.api.repository.UserRepository;
+import java.time.Instant;
 import java.util.Optional;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -37,6 +38,10 @@ public class CustomOidcUserService extends OidcUserService {
       user.setName(name);
       user.setProfileImage(profileImage);
       user.setRole("ROLE_USER");
+      user.setCreatedAt(Instant.now());
+      user.setUpdatedAt(Instant.now());
+      user.setCreatedBy("SYSTEM");
+      user.setUpdatedBy("SYSTEM");
 
       userRepository.save(user);
     }

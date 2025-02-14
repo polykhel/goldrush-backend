@@ -1,7 +1,7 @@
 package com.goldrush.api.web;
 
 
-import com.goldrush.api.domain.User;
+import com.goldrush.api.model.User;
 import com.goldrush.api.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

@@ -1,0 +1,210 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1739524828946-1
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_inquiry
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: date
+                  type: DATE
+              - column:
+                  name: client_name
+                  type: VARCHAR(255)
+              - column:
+                  name: source
+                  type: VARCHAR(255)
+              - column:
+                  name: package_type
+                  type: SMALLINT
+              - column:
+                  name: custom_package_options
+                  type: VARCHAR(255)
+              - column:
+                  name: remarks
+                  type: VARCHAR(255)
+              - column:
+                  name: destination
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: days
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: nights
+                  type: INT
+              - column:
+                  name: start_date
+                  type: DATE
+              - column:
+                  name: end_date
+                  type: DATE
+              - column:
+                  name: preferred_hotel
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: adults
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: children
+                  type: INT
+              - column:
+                  name: child_ages
+                  type: VARCHAR(255)
+            tableName: inquiry
+  - changeSet:
+      id: 1739524828946-2
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: inquiry_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: quotations_id
+                  type: UUID
+            tableName: inquiry_quotations
+  - changeSet:
+      id: 1739524828946-3
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_providerquotation
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: provider_id
+                  type: UUID
+              - column:
+                  name: currency_code
+                  type: VARCHAR(3)
+              - column:
+                  name: price_amount
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: exchange_rate
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: php_equivalent_amount
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: email_quotation
+                  type: VARCHAR(255)
+              - column:
+                  name: internal_remarks
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR(255)
+            tableName: provider_quotation
+  - changeSet:
+      id: 1739524828946-4
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: quotations_id
+            constraintName: uc_inquiry_quotations_quotations
+            tableName: inquiry_quotations
+  - changeSet:
+      id: 1739524828946-5
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: provider_id
+            baseTableName: provider_quotation
+            constraintName: FK_PROVIDERQUOTATION_ON_PROVIDER
+            referencedColumnNames: id
+            referencedTableName: provider
+  - changeSet:
+      id: 1739524828946-6
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: inquiry_id
+            baseTableName: inquiry_quotations
+            constraintName: fk_inqquo_on_inquiry
+            referencedColumnNames: id
+            referencedTableName: inquiry
+  - changeSet:
+      id: 1739524828946-7
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: quotations_id
+            baseTableName: inquiry_quotations
+            constraintName: fk_inqquo_on_provider_quotation
+            referencedColumnNames: id
+            referencedTableName: provider_quotation
+

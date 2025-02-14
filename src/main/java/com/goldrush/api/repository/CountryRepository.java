@@ -1,6 +1,5 @@
 package com.goldrush.api.repository;
 
-import com.goldrush.api.domain.Country;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.goldrush.api.model.Country;
 
-public interface CountryRepository extends JpaRepository<Country, Long> {}
+public interface CountryRepository extends BaseRepository<Country> {}
