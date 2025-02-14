@@ -43,13 +43,6 @@ public abstract class BaseEntity implements Serializable {
   @Column
   private LocalDateTime deletedAt;
 
-  /**
-   * Marks the entity as deleted by setting the deletedAt field.
-   */
-  public void markAsDeleted() {
-    this.deletedAt = LocalDateTime.now();
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
