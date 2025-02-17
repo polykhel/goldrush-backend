@@ -1,8 +1,11 @@
 package com.goldrush.api.model.embedabble;
 
+import com.goldrush.api.model.Country;
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +13,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TravelDetails implements Serializable {
+
+  @ManyToOne
+  private Country country;
 
   private String destination;
 

@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1739797971047-1
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  defaultValueBoolean: false
+                  name: include_in_email
+                  type: boolean
+            tableName: provider_quotation
+
+  - changeSet:
+      id: 1739797971047-2
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  defaultValueBoolean: false
+                  name: sent
+                  type: boolean
+            tableName: provider_quotation

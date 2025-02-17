@@ -17,4 +17,6 @@ public class ProviderQuotationDto extends BaseDto {
   private String emailQuotation;
   private String internalRemarks;
   private QuotationStatus status;
+  private boolean includeInEmail;
+  private boolean sent;
 }

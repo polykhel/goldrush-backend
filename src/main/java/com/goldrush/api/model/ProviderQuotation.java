@@ -37,4 +37,10 @@ public class ProviderQuotation extends BaseEntity {
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private QuotationStatus status;
+
+  @Column(columnDefinition = "boolean default false")
+  private boolean includeInEmail;
+
+  @Column(columnDefinition = "boolean default false")
+  private boolean sent;
 }

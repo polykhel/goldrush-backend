@@ -20,7 +20,7 @@ public abstract class BaseEntity implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  @Column(name = "id", updatable = false, nullable = false, columnDefinition = "UUID default gen_random_uuid()")
+  @Column(name = "id", updatable = false, nullable = false)
   private UUID id;
 
   @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
