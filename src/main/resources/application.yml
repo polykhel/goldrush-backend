@@ -1,6 +1,9 @@
 app:
-  auth-redirect-url:
-  jwt-secret-key:
+  authRedirectUrl:
+  jwtSecretKey:
+  exchange-rate:
+    url:
+    secret-key:
 
 spring:
   datasource:
@@ -34,7 +37,13 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/master.yml
-
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            loggerLevel: FULL
+logging.level.com.goldrush.api.feign: DEBUG
 minio:
   url:
   accessKey:

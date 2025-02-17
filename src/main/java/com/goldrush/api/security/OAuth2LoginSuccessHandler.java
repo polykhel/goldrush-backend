@@ -13,7 +13,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 
   private final JwtUtil jwtUtil;
 
-  @Value("${app.auth-redirect-url}")
+  @Value("${app.authRedirectUrl}")
   private String redirectUrl;
 
   public OAuth2LoginSuccessHandler(JwtUtil jwtUtil) {

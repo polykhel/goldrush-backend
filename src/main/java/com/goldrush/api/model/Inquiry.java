@@ -32,7 +32,7 @@ public class Inquiry extends BaseEntity {
 
   private String customPackageOptions;
 
-  @OneToMany(fetch = FetchType.LAZY)
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinTable(name = "inquiry_provider_quotations",
           joinColumns = @JoinColumn(name = "inquiry_id"),
           inverseJoinColumns = @JoinColumn(name = "provider_quotation_id"))

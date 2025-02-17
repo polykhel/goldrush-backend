@@ -39,7 +39,7 @@ public class InquiryResource {
   }
 
   @PostMapping
-  public InquiryDto saveInquiry(InquiryDto inquiryDto) {
+  public InquiryDto saveInquiry(@RequestBody InquiryDto inquiryDto) {
     return inquiryService.save(inquiryDto);
   }
 

@@ -7,6 +7,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import java.math.BigDecimal;
+import java.time.Instant;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +32,8 @@ public class ProviderQuotation extends BaseEntity {
   @Column(precision = 10, scale = 2)
   private BigDecimal phpEquivalentAmount;
 
+  private Instant exchangeRateLastUpdated;
+
   private String emailQuotation;
 
   private String internalRemarks;
@@ -37,9 +41,6 @@ public class ProviderQuotation extends BaseEntity {
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private QuotationStatus status;
-
-  @Column(columnDefinition = "boolean default false")
-  private boolean includeInEmail;
 
   @Column(columnDefinition = "boolean default false")
   private boolean sent;
