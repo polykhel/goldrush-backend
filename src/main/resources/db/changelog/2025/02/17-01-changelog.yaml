@@ -1,0 +1,410 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1739778352486-1
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_app_user
+                  defaultValueComputed: gen_random_uuid()
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  defaultValue: SYSTEM
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValue: SYSTEM
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: google_id
+                  type: VARCHAR(255)
+              - column:
+                  name: profile_image
+                  type: VARCHAR(255)
+              - column:
+                  name: role
+                  type: VARCHAR(255)
+            tableName: app_user
+  - changeSet:
+      id: 1739778352486-2
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_country
+                  defaultValueComputed: gen_random_uuid()
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  defaultValue: SYSTEM
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValue: SYSTEM
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+              - column:
+                  name: code
+                  type: VARCHAR(255)
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+            tableName: country
+  - changeSet:
+      id: 1739778352486-3
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_inquiry
+                  defaultValueComputed: gen_random_uuid()
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  defaultValue: SYSTEM
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValue: SYSTEM
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: date
+                  type: DATE
+              - column:
+                  name: client_name
+                  type: VARCHAR(255)
+              - column:
+                  name: source
+                  type: VARCHAR(255)
+              - column:
+                  name: package_type
+                  type: SMALLINT
+              - column:
+                  name: custom_package_options
+                  type: VARCHAR(255)
+              - column:
+                  name: remarks
+                  type: VARCHAR(255)
+              - column:
+                  name: destination
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: days
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: nights
+                  type: INT
+              - column:
+                  name: start_date
+                  type: DATE
+              - column:
+                  name: end_date
+                  type: DATE
+              - column:
+                  name: preferred_hotel
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: adults
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: children
+                  type: INT
+              - column:
+                  name: child_ages
+                  type: VARCHAR(255)
+            tableName: inquiry
+  - changeSet:
+      id: 1739778352486-4
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: gen_random_uuid()
+                  name: inquiry_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: gen_random_uuid()
+                  name: provider_quotation_id
+                  type: UUID
+            tableName: inquiry_provider_quotations
+  - changeSet:
+      id: 1739778352486-5
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_provider
+                  defaultValueComputed: gen_random_uuid()
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  defaultValue: SYSTEM
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValue: SYSTEM
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: logo
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: tracker_link
+                  type: VARCHAR(255)
+            tableName: provider
+  - changeSet:
+      id: 1739778352486-6
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_providerquotation
+                  defaultValueComputed: gen_random_uuid()
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  defaultValue: SYSTEM
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValue: SYSTEM
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  defaultValueBoolean: false
+                  name: deleted
+                  type: boolean
+              - column:
+                  name: deleted_at
+                  type: TIMESTAMP
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: gen_random_uuid()
+                  name: provider_id
+                  type: UUID
+              - column:
+                  name: currency_code
+                  type: VARCHAR(3)
+              - column:
+                  name: price_amount
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: exchange_rate
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: php_equivalent_amount
+                  type: DECIMAL(10, 2)
+              - column:
+                  name: email_quotation
+                  type: VARCHAR(255)
+              - column:
+                  name: internal_remarks
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR(255)
+            tableName: provider_quotation
+  - changeSet:
+      id: 1739778352486-7
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: provider_quotation_id
+            constraintName: uc_inquiry_provider_quotations_provider_quotation
+            tableName: inquiry_provider_quotations
+  - changeSet:
+      id: 1739778352486-8
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: google_id
+            indexName: idx_9aa84f460c309ef7dc79143b2
+            tableName: app_user
+  - changeSet:
+      id: 1739778352486-9
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: provider_id
+            baseTableName: provider_quotation
+            constraintName: FK_PROVIDERQUOTATION_ON_PROVIDER
+            referencedColumnNames: id
+            referencedTableName: provider
+  - changeSet:
+      id: 1739778352486-10
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: inquiry_id
+            baseTableName: inquiry_provider_quotations
+            constraintName: fk_inqproquo_on_inquiry
+            referencedColumnNames: id
+            referencedTableName: inquiry
+  - changeSet:
+      id: 1739778352486-11
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: provider_quotation_id
+            baseTableName: inquiry_provider_quotations
+            constraintName: fk_inqproquo_on_provider_quotation
+            referencedColumnNames: id
+            referencedTableName: provider_quotation
+

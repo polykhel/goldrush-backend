@@ -1,11 +1,21 @@
+app:
+  auth-redirect-url:
+  jwt-secret-key:
+
 spring:
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+
   security:
     oauth2:
       client:
         registration:
           google:
-            client-id: changeme
-            client-secret: changeme
+            client-id:
+            client-secret:
             scope:
               - openid
               - profile
@@ -18,15 +28,15 @@ spring:
             user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
             user-name-attribute: sub
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/goldrush
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-
   jpa:
     open-in-view: false
 
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/master.yml
+
+minio:
+  url:
+  accessKey:
+  secretKey:
+  bucketName:

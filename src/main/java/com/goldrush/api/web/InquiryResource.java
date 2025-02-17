@@ -1,15 +1,15 @@
 package com.goldrush.api.web;
 
 import com.goldrush.api.dto.InquiryDto;
+import com.goldrush.api.dto.request.InquiryParamsDto;
+import com.goldrush.api.dto.response.InquiryStatusDto;
 import com.goldrush.api.service.InquiryService;
 import java.util.List;
 import java.util.UUID;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/inquiry")
@@ -21,9 +21,16 @@ public class InquiryResource {
     this.inquiryService = inquiryService;
   }
 
+  /**
+   * Retrieves a paginated list of inquiries based on provided parameters.
+   *
+   * @param params the filtering and querying parameters for inquiries
+   * @param pageable the pagination information including page number and size
+   * @return a paginated list of inquiry DTOs that match the specified parameters
+   */
   @GetMapping
-  public List<InquiryDto> getAlInquiries() {
-    return inquiryService.getAll();
+  public Page<InquiryDto> getAlInquiries(InquiryParamsDto params, Pageable pageable) {
+    return inquiryService.getInquiries(params, pageable);
   }
 
   @GetMapping("/{id}")
@@ -39,5 +46,10 @@ public class InquiryResource {
   @DeleteMapping("/{id}")
   public void deleteInquiry(@PathVariable UUID id) {
     inquiryService.deleteById(id);
+  }
+
+  @GetMapping("/statuses")
+  public List<InquiryStatusDto> getInquiryStatuses() {
+    return inquiryService.getInquiryStatuses();
   }
 }

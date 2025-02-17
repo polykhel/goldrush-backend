@@ -1,6 +1,8 @@
 package com.goldrush.api.web;
 
+import com.goldrush.api.dto.UserDto;
 import com.goldrush.api.security.JwtUtil;
+import com.goldrush.api.service.UserService;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthResource {
 
   private final JwtUtil jwtUtil;
+  private final UserService userService;
 
-  public AuthResource(JwtUtil jwtUtil) {
+  public AuthResource(JwtUtil jwtUtil, UserService userService) {
     this.jwtUtil = jwtUtil;
+    this.userService = userService;
   }
 
   @GetMapping("/callback")
-  public Map<String, Object> callback(@RequestParam("token") String token) {
+  public Map<String, Object> callback(@RequestParam("access_token") String token) {
     Map<String, Object> response = new HashMap<>();
 
     if (jwtUtil.validateToken(token)) {
@@ -39,23 +43,9 @@ public class AuthResource {
   }
 
   @GetMapping("/me")
-  public Map<String, Object> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
+  public UserDto getCurrentUser(@RequestHeader("Authorization") String authHeader) {
     String token = authHeader.replace("Bearer ", "");
-
-    // Extract claims from the JWT
     String username = jwtUtil.getUsernameFromToken(token);
-    String email = jwtUtil.getClaimFromToken(token, claims -> claims.get("email", String.class));
-    String name = jwtUtil.getClaimFromToken(token, claims -> claims.get("name", String.class));
-    String picture =
-        jwtUtil.getClaimFromToken(token, claims -> claims.get("picture", String.class));
-
-    // Return user details
-    Map<String, Object> userDetails = new HashMap<>();
-    userDetails.put("username", username);
-    userDetails.put("email", email);
-    userDetails.put("name", name);
-    userDetails.put("picture", picture);
-
-    return userDetails;
+    return userService.getByEmail(username);
   }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/country")
+@RequestMapping("/api/country")
 public class CountryResource {
 
   private final CountryService countryService;

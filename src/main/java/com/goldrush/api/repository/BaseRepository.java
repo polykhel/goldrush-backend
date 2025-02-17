@@ -7,11 +7,12 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
 @NoRepositoryBean
-public interface BaseRepository<E extends BaseEntity> extends JpaRepository<E, UUID> {
+public interface BaseRepository<E extends BaseEntity> extends JpaRepository<E, UUID>, QuerydslPredicateExecutor<E> {
 
   @Query("SELECT e FROM #{#entityName} e WHERE e.deleted = false")
   List<E> findAllActive();

@@ -26,6 +26,6 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
       throws IOException {
     String token = jwtUtil.generateToken(authentication);
 
-    response.sendRedirect(redirectUrl + "?token=" + token);
+    response.sendRedirect(redirectUrl + "?access_token=" + token);
   }
 }

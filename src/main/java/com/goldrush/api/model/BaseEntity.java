@@ -3,7 +3,6 @@ package com.goldrush.api.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,27 +20,30 @@ public abstract class BaseEntity implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "id", updatable = false, nullable = false, columnDefinition = "UUID default gen_random_uuid()")
   private UUID id;
 
-  @Column(updatable = false, nullable = false)
+  @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
   @CreationTimestamp
   private Instant createdAt;
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
   @UpdateTimestamp
   private Instant updatedAt;
 
-  @Column(updatable = false)
+  @Column(updatable = false, columnDefinition = "VARCHAR(255) default 'SYSTEM'")
   @CreatedBy
   private String createdBy;
 
-  @Column @LastModifiedBy private String updatedBy;
+  @Column(columnDefinition = "VARCHAR(255) default 'SYSTEM'")
+  @LastModifiedBy
+  private String updatedBy;
 
   @Column(columnDefinition = "boolean default false")
   private boolean deleted;
 
-  @Column
-  private LocalDateTime deletedAt;
+  @Column(columnDefinition = "TIMESTAMP")
+  private Instant deletedAt;
 
   @Override
   public boolean equals(Object o) {

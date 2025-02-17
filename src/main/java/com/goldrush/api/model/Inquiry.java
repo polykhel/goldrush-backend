@@ -3,12 +3,8 @@ package com.goldrush.api.model;
 import com.goldrush.api.model.embedabble.TravelDetails;
 import com.goldrush.api.model.enums.InquiryStatus;
 import com.goldrush.api.model.enums.PackageType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
@@ -29,13 +25,17 @@ public class Inquiry extends BaseEntity {
 
   private String source;
 
-  @Embedded private TravelDetails travelDetails;
+  @Embedded
+  private TravelDetails travelDetails;
 
   private PackageType packageType;
 
   private String customPackageOptions;
 
-  @OneToMany
+  @OneToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "inquiry_provider_quotations",
+          joinColumns = @JoinColumn(name = "inquiry_id"),
+          inverseJoinColumns = @JoinColumn(name = "provider_quotation_id"))
   private List<ProviderQuotation> quotations;
 
   private String remarks;
