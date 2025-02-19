@@ -1,5 +1,6 @@
 package com.goldrush.api.service;
 
+import com.goldrush.api.aop.LogExecutionTime;
 import com.goldrush.api.dto.request.SignupRequest;
 import com.goldrush.api.dto.UserDto;
 import com.goldrush.api.exception.NotFoundException;
@@ -29,6 +30,7 @@ public class UserService extends BaseService<User, UserDto, UserRepository, User
         .orElseThrow(() -> new NotFoundException("User not found"));
   }
 
+  @LogExecutionTime
   @Transactional
   public UserDto signup(SignupRequest request) {
     Optional<User> existingUser = repository.findByEmail(request.getEmail());
