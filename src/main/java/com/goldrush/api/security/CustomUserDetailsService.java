@@ -2,7 +2,8 @@ package com.goldrush.api.security;
 
 import com.goldrush.api.model.User;
 import com.goldrush.api.repository.UserRepository;
-import java.util.Collections;
+import java.util.List;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,7 +26,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             .orElseThrow(
                 () -> new UsernameNotFoundException("User not found with email: " + email));
 
+    List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(user.getRole()));
     return new org.springframework.security.core.userdetails.User(
-        user.getEmail(), "", Collections.emptyList());
+        user.getEmail(), user.getPassword(), authorities);
   }
 }

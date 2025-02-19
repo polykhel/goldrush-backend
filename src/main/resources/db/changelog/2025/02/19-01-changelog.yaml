@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1739977096174-2
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+            tableName: app_user
+  - changeSet:
+      id: 1739977096174-4
+      author: polle
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: uc_app_user_email
+            tableName: app_user
+

@@ -5,9 +5,10 @@ import com.goldrush.api.model.User;
 import com.goldrush.api.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
 
 @RestController
 @Slf4j
@@ -20,11 +21,11 @@ public class HomeResource {
   }
 
   @GetMapping("/")
-  public String home(@AuthenticationPrincipal OidcUser oidcUser) {
-    if (oidcUser != null) {
+  public String home(@AuthenticationPrincipal Principal principal) {
+    if (principal != null) {
 
-      String googleId = oidcUser.getSubject();
-      User user = userRepository.findByGoogleId(googleId).orElseThrow();
+      String name = principal.getName();
+      User user = userRepository.findByEmail(name).orElseThrow();
 
       log.info(user.getEmail());
       log.info(user.getName());

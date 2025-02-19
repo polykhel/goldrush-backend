@@ -1,5 +1,4 @@
 app:
-  authRedirectUrl:
   jwtSecretKey:
   exchange-rate:
     url:
@@ -12,40 +11,9 @@ spring:
     password:
     driver-class-name: org.postgresql.Driver
 
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id:
-            client-secret:
-            scope:
-              - openid
-              - profile
-              - email
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-        provider:
-          google:
-            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
-            token-uri: https://oauth2.googleapis.com/token
-            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
-            user-name-attribute: sub
-
   jpa:
     open-in-view: false
 
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/master.yml
-  cloud:
-    openfeign:
-      client:
-        config:
-          default:
-            loggerLevel: FULL
-logging.level.com.goldrush.api.feign: DEBUG
-minio:
-  url:
-  accessKey:
-  secretKey:
-  bucketName:
